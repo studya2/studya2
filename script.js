@@ -2,7 +2,7 @@
    Study @ A² — site behaviour. Content you may want to edit
    (programmes, toppers, phone) is at the top of this file.
    ========================================================= */
-const PHONE_WA = "918420317980";
+const PHONE_WA = "918420424440";
 
 const PROGRAMMES = {
   school: {
@@ -94,7 +94,7 @@ if (TOPPERS.length) {
     <div class="empty reveal">
       <h3>Results are celebrated here</h3>
       <p>Our toppers' names and scores are published every year. Call us to hear about our recent results.</p>
-      <a class="link" href="tel:+918420317980">+91 84203 17980</a>
+      <a class="link" href="tel:+918420424440">+91 84204 24440</a>
     </div>`;
 }
 
