@@ -71,6 +71,54 @@ $$(".tabs button").forEach(b => b.addEventListener("click", () => {
 }));
 showProgramme("school");
 
+/* ---------- hero photo carousel ---------- */
+const heroCarousel = $("#hero-carousel");
+const heroSlides = $$(".hero-slide", heroCarousel);
+const heroDots = $(".hero-dots", heroCarousel);
+const heroToggle = $(".hero-toggle", heroCarousel);
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+let heroIndex = 0, heroTimer = null, heroPaused = reduceMotion.matches;
+
+heroDots.innerHTML = heroSlides.map((_, i) =>
+  `<button class="hero-dot" type="button" aria-label="Show image ${i + 1}" aria-current="${i === 0}"></button>`
+).join("");
+const heroDotButtons = $$(".hero-dot", heroDots);
+function showHeroSlide(index) {
+  heroIndex = (index + heroSlides.length) % heroSlides.length;
+  heroSlides.forEach((slide, i) => {
+    const active = i === heroIndex;
+    slide.classList.toggle("is-active", active);
+    slide.setAttribute("aria-hidden", String(!active));
+    heroDotButtons[i].setAttribute("aria-current", String(active));
+  });
+}
+function stopHeroTimer() {
+  window.clearInterval(heroTimer);
+  heroTimer = null;
+}
+function startHeroTimer() {
+  stopHeroTimer();
+  if (!heroPaused) heroTimer = window.setInterval(() => showHeroSlide(heroIndex + 1), 1500);
+}
+function setHeroPaused(paused) {
+  heroPaused = paused;
+  heroToggle.setAttribute("aria-pressed", String(paused));
+  heroToggle.setAttribute("aria-label", paused ? "Resume automatic slideshow" : "Pause automatic slideshow");
+  heroToggle.textContent = paused ? "▶" : "Ⅱ";
+  if (paused) stopHeroTimer(); else startHeroTimer();
+}
+$(".hero-prev", heroCarousel).addEventListener("click", () => { showHeroSlide(heroIndex - 1); startHeroTimer(); });
+$(".hero-next", heroCarousel).addEventListener("click", () => { showHeroSlide(heroIndex + 1); startHeroTimer(); });
+heroDotButtons.forEach((dot, i) => dot.addEventListener("click", () => { showHeroSlide(i); startHeroTimer(); }));
+heroToggle.addEventListener("click", () => setHeroPaused(!heroPaused));
+heroCarousel.addEventListener("mouseenter", stopHeroTimer);
+heroCarousel.addEventListener("mouseleave", startHeroTimer);
+heroCarousel.addEventListener("focusin", stopHeroTimer);
+heroCarousel.addEventListener("focusout", e => { if (!heroCarousel.contains(e.relatedTarget)) startHeroTimer(); });
+reduceMotion.addEventListener("change", e => setHeroPaused(e.matches));
+setHeroPaused(heroPaused);
+startHeroTimer();
+
 /* "Enquire for this" pre-selects the course in the form */
 panel.addEventListener("click", e => {
   const a = e.target.closest("[data-course]");

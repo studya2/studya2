@@ -47,10 +47,31 @@
         <a class="btn btn-ghost" href="tel:+918420424440">Call +91 84204 24440</a>
       </div>
     </div>
-    <figure class="hero-img reveal">
-      <img src="assets/class-group-1.jpg" alt="Students and mentors at Study @ A² in the classroom" width="1200" height="900" fetchpriority="high">
+    <figure class="hero-img hero-carousel reveal" id="hero-carousel" role="region" aria-roledescription="carousel" aria-label="Life at Study @ A²">
+      <div class="hero-slides">
+        <img class="hero-slide is-active" src="assets/class-group-1.jpg" alt="Students and mentors at Study @ A² in the classroom" width="1200" height="900" fetchpriority="high">
+        <img class="hero-slide" src="assets/gift-moment.jpg" alt="Students receiving gifts at a centre event" width="1200" height="900" loading="lazy" aria-hidden="true">
+        <img class="hero-slide" src="assets/class-teaching.jpg" alt="Students working during a classroom lesson" width="900" height="1200" loading="lazy" aria-hidden="true">
+        <img class="hero-slide" src="assets/class-side.jpg" alt="Students studying together in the classroom" width="900" height="1200" loading="lazy" aria-hidden="true">
+      </div>
+      <button class="hero-arrow hero-prev" type="button" aria-label="Previous image">‹</button>
+      <button class="hero-arrow hero-next" type="button" aria-label="Next image">›</button>
+      <div class="hero-carousel-controls">
+        <div class="hero-dots" aria-label="Choose an image"></div>
+        <button class="hero-toggle" type="button" aria-label="Pause automatic slideshow" aria-pressed="false">Ⅱ</button>
+      </div>
     </figure>
   </section>
+
+  <!-- ADMISSIONS -->
+  <a class="admission-banner wrap" href="https://forms.gle/qWsryo1V1C4SaZgcA" target="_blank" rel="noopener noreferrer" aria-label="Admissions are open. Apply now using the admission form, opens in a new tab.">
+    <span class="admission-copy">
+      <span class="admission-kicker">Admissions open</span>
+      <span class="admission-title">Give your learning a strong start.</span>
+      <span class="admission-note">Apply now for classes 8–12 and NEET</span>
+    </span>
+    <span class="admission-cta">Apply now <span aria-hidden="true">↗</span></span>
+  </a>
 
   <!-- CLASSES -->
   <section class="section wrap" id="classes">
